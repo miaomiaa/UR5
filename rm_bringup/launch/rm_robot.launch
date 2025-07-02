@@ -1,0 +1,15 @@
+<launch>
+
+  <include file="$(find rm_control)/launch/rm_control.launch" />
+
+<!-- RM-65 Driver -->
+  <node name="rm_driver" pkg="rm_driver" type="rm_driver" respawn="true" output="screen">
+  </node>
+
+
+<!-- Moveit -->
+  <include file="$(find rm_65_moveit_config)/launch/demo_realrobot.launch">
+  </include>
+  
+  <node pkg="tf" type="static_transform_publisher" name="hand_control_broadcaster"  args="0.02 -0.1 0.03 1.578 -1.5708 0 Link6 camera_link 100" />
+</launch>
